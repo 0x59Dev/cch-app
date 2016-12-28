@@ -18,7 +18,7 @@ $(document).ready(function(){
 
         }
         console.log(registerForm);
-        var registerUrl = "/test";
+        var registerUrl = "/register";
         $.ajax({
 			url: registerUrl,
             type:"POST",

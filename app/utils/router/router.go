@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/methlab669/cavechat/app/handlers"
+	"github.com/methlab669/cch-app/app/handlers"
 )
 
 type RouteConf struct {
@@ -22,10 +22,10 @@ type Routes []RouteConf
 //Name, method, path, handler function, add every URL here
 var routerPaths = Routes{
 	RouteConf{
-		"test",
+		"register",
 		"POST",
-		"/test",
-		handlers.TestHandler,
+		"/register",
+		handlers.Register,
 	},
 }
 

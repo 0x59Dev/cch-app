@@ -2,11 +2,10 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
-	"github.com/methlab669/cavechat/app/models/auth"
+	"github.com/methlab669/cch-app/app/models/auth"
 )
 
 func Register(w http.ResponseWriter, r *http.Request) {
@@ -22,6 +21,10 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, errorString, http.StatusInternalServerError)
 		return
 	}
-	fmt.Println(registerData)
-
+	if err := registerData.AddUser(); err != nil {
+		log.Println("Error : ", err)
+		return
+	} else {
+		log.Println("Success")
+	}
 }
