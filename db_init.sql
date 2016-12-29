@@ -27,14 +27,11 @@ GRANT ALL ON SCHEMA public TO testdev;
 --  Tables creation
 --
 
-CREATE TABLE domains(
+CREATE TABLE users(
   id serial primary key,
-  domain_name varchar(100),
-  expire_at timestamp without time zone,
-  sign_algorithm varchar,
-  cert_version integer,
-  serial_number bigint,
-  organization varchar
+  username varchar(100) not null,
+  userpass bytea not null,
+  mail varchar(100) not null
 );
 
 

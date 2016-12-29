@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	_ "github.com/lib/pq"
 	"github.com/methlab669/cch-app/app/models/auth"
 )
 
