@@ -7,10 +7,10 @@ import (
 )
 
 type RegisterData struct {
-	login        string `json:"login"`
-	mail         string `json:"mail"`
-	password     string `json:"password"`
-	confPassword string `json:"confPassword"`
+	Login        string `json:"login"`
+	Mail         string `json:"mail"`
+	Password     string `json:"password"`
+	ConfPassword string `json:"confPassword"`
 }
 
 func (r *RegisterData) AddUser() error {
@@ -23,7 +23,7 @@ func (r *RegisterData) AddUser() error {
 
 func (r *RegisterData) verifyMail() bool {
 	mailRegexp := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,10}$`)
-	return mailRegexp.MatchString(r.mail)
+	return mailRegexp.MatchString(r.Mail)
 }
 
 func (r *RegisterData) verifyPassword() bool {
@@ -35,9 +35,9 @@ func (r *RegisterData) verifyData() error {
 		fmt.Println(r.verifyMail())
 		return errors.New("MailError")
 	} else if !r.verifyPassword() {
-		return errors.New("PassError")
-	} else if r.password != r.confPassword {
-		return errors.New("MatchError")
+		return errors.New("Pass Strength Error")
+	} else if r.Password != r.ConfPassword {
+		return errors.New("Password Match Error")
 	} else {
 		return nil
 	}

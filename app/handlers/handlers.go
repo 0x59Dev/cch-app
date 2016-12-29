@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/julienschmidt/httprouter"
 )
 
 type registerForm struct {
@@ -19,7 +21,7 @@ type TestForm struct {
 	Test2 string `json:"test2"`
 }
 
-func RegisterHandle(w http.ResponseWriter, r *http.Request) {
+func RegisterHandle(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Println(r)
 	var registerJSON registerForm
 	JSONDecoder := json.NewDecoder(r.Body)

@@ -2,13 +2,15 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
+	"github.com/julienschmidt/httprouter"
 	"github.com/methlab669/cch-app/app/models/auth"
 )
 
-func Register(w http.ResponseWriter, r *http.Request) {
+func Register(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	var registerData auth.RegisterData
 
@@ -16,11 +18,13 @@ func Register(w http.ResponseWriter, r *http.Request) {
 
 	err := JSONDecoder.Decode(&registerData)
 	if err != nil {
-		errorString := "ooops! We got some problem, please try again!"
 		log.Println("Error Encoding registration data : ", err)
-		http.Error(w, errorString, http.StatusInternalServerError)
+		status := http.StatusInternalServerError
+		http.Error(w, http.StatusText(status), status)
 		return
 	}
+
+	fmt.Println(registerData)
 	if err := registerData.AddUser(); err != nil {
 		log.Println("Error : ", err)
 		return

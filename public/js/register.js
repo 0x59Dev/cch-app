@@ -14,28 +14,27 @@ $(document).ready(function(){
             login: $("#login").val(),
             mail: $("#mail").val(),
             password: $("#password").val(),
-            confPassword: $("#confPassword").val(),
-
-        }
+            confPassword: $("#confPassword").val()
+        };
         console.log(registerForm);
         var registerUrl = "/register";
         $.ajax({
 			url: registerUrl,
             type:"POST",
             data: JSON.stringify(registerForm),
-            dataType: 'json',
+            async: true,
             contentType: 'application/json; charset=UTF-8',
 			success: function(data)
 			{
                 console.log(data);
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
-                console.log("Error : "+ textStatus);
+                console.log("Error : "+ textStatus + errorThrown);
             }
         });
 
 
-		e.preventDefault();
+        //e.preventDefault();
 
 
 
