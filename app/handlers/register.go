@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -11,9 +12,11 @@ import (
 	"github.com/methlab669/cch-app/app/models/auth"
 )
 
+var db *sql.DB
+
 func Register(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
-	var registerData auth.RegisterData
+	var registerData auth.User
 
 	JSONDecoder := json.NewDecoder(r.Body)
 
